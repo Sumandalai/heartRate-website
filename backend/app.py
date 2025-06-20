@@ -1,57 +1,3 @@
-# from flask import Flask
-# from flask_socketio import SocketIO, emit
-# import numpy as np
-# import cv2
-# import base64
-# import time
-
-# from tensorflow.keras.models import load_model
-
-# app = Flask(__name__)
-# socketio = SocketIO(app, cors_allowed_origins="*")
-# model = load_model("bpm_model_v2.keras")
-# classifier = cv2.CascadeClassifier("haar_cascade_frontal_face.xml")
-
-# X = []
-
-# @socketio.on('connect')
-# def handle_connect():
-#     print("Client connected")
-
-# @socketio.on('disconnect')
-# def handle_disconnect():
-#     print("Client disconnected")
-
-# @socketio.on('frame')
-# def handle_frame(data):
-#     global X
-
-#     image_data = data['image'].split(',')[1]  # Remove "data:image/jpeg;base64,"
-#     img_bytes = base64.b64decode(image_data)
-#     np_arr = np.frombuffer(img_bytes, np.uint8)
-#     frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
-
-#     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-#     face_rects = classifier.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3)
-
-#     if len(face_rects) > 0:
-#         x, y, w, h = face_rects[0]
-#         green = frame[y:y+h, x:x+w, 1]  
-#         mean_g = np.mean(green)
-#         X.append(mean_g)
-
-#         if len(X) == 24:
-#             X_input = np.array(X).reshape(1, 24)
-#             prediction = model.predict(X_input)[0][0]
-#             bpm = int(prediction)
-#             print(f"BPM: {bpm}")
-#             emit('bpm', {'bpm': bpm})
-#             X = []  # reset
-
-#     else:
-#         print("No face detected")
-
-
 from flask import Flask
 from flask_socketio import SocketIO, emit
 import numpy as np
@@ -143,4 +89,4 @@ def handle_frame(data):
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host="0.0.0.0", port=5000, debug=True, allow_unsafe_werkzeug=True)
