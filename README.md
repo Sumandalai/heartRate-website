@@ -118,7 +118,10 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-
+**OR Run using Docker Compose:**
+```
+docker-compose up --build
+```
 ---
 
 ## Limitations & Ethical Considerations
