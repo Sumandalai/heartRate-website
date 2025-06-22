@@ -146,7 +146,7 @@ This project is licensed under the terms of the MIT License. See the [LICENSE](L
 
 ## Contact
 
-For questions or contributions, contact: [kalicharansahoo91@gmail.com , sumandalai0509@gmail.com]
+For questions or contributions, contact: [kalicharansahoo91@gmail.com , sumandalai0509@gmail.com,anmolagrawal67415@gamil.com]
 
 ---
 
