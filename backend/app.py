@@ -87,6 +87,16 @@ def handle_frame(data):
                 emit('status', {'state': 'noface'})
                 emit('bpm', {'bpm': 0})
 
+@socketio.on('reset')
+def handle_reset():
+    global X, session_data, face_detected, face_counter, no_face_counter
+    X.clear()
+    session_data.clear()
+    face_detected = False
+    face_counter = 0
+    no_face_counter = 0
+    emit('status', {'state': 'reset'})
+
 
 if __name__ == '__main__':
     socketio.run(app, host="0.0.0.0", port=5000, debug=True, allow_unsafe_werkzeug=True)
